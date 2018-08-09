@@ -17,8 +17,11 @@
       <section class="section" >
         <h1 class="title has-text-centered">{{ image.description }}</h1>
       </section>
-      <div class="hero is-fullheight">
-        <image-compare :before="image.before" :after="image.after" :full="true"/>
+      <div class="hero is-fullheight" @click="clicked = true">
+        <image-compare :before="image.before" :after="image.after" :full="true" >
+          <i v-show="!clicked" class="fa fa-angle-left" aria-hidden="true" slot="icon-left"></i>
+          <i v-show="!clicked" class="fa fa-angle-right" aria-hidden="true" slot="icon-right"></i>
+        </image-compare>
       </div>
       <section class="section" >
         <i>Foto: Rymdstyrelsen/Google/Esa</i>
@@ -35,6 +38,7 @@ export default {
 
   data () {
     return {
+      clicked: false,
       images: [
         {
           before: 'https://www.rymdstyrelsen.se/contentassets/9f65a925be9c4b2098469a622d9302cd/blekinge2017_fotorymdstyrelsengoogleesa.jpg',
